@@ -33,7 +33,7 @@ const program = await odd.assemble(
 const { keystore } = program.components.crypto
 
 test('create request', async t => {
-    const req = create(keystore, { type: 'test', value: 'wooo' })
+    const req = await create(keystore, { type: 'test', value: 'wooo' })
     console.log('**req**', req)
     t.ok(req, 'request was created')
 })
