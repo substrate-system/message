@@ -8,7 +8,7 @@ let program
 test('setup', async t => {
     program = await odd.assemble({
         namespace: { creator: 'test', name: 'testing' },
-        debug: true
+        debug: false
     }, components)
 
     t.ok(program, 'create a program')
