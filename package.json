@@ -6,9 +6,7 @@
   "main": "src/index.ts",
   "scripts": {
     "lint": "standardx -v \"./**/*.ts\"",
-    "//build-tests": "esbuild test/index.ts --bundle --keep-names > test/test-bundle.js",
     "build-tests": "esbuild test/*.ts --platform=node --format=esm --outdir=test --keep-names",
-    "//test": "npm run lint && npm run build-tests && node test/index.js | tap-arc",
     "test": "npm run build && npm run build-tests && rm -rf test/node_modules && cd test && npm i && NODE_ENV=test node ./index.js | tap-arc",
     "build-cjs": "esbuild src/*.ts --format=cjs --keep-names --outdir=./dist --out-extension:.js=.cjs",
     "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc",
@@ -16,12 +14,16 @@
     "postversion": "git push && git push --tags && npm publish",
     "prepublishOnly": "npm run build"
   },
+  "dependencies": {
+    "@ssc-hermes/util": "^0.1.6",
+    "json-stable-stringify": "^1.0.2"
+  },
   "devDependencies": {
+    "@oddjs/odd": "^0.37.0",
     "@typescript-eslint/parser": "^5.55.0",
     "esbuild": "^0.15.18",
     "standardx": "^7.0.0",
     "tap-arc": "^0.3.5",
-    "tape-run": "^10.0.0",
     "tapzero": "^0.6.1",
     "typescript": "^5.0.2"
   },

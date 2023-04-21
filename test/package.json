@@ -1,0 +1,6 @@
+{
+    "type": "module",
+    "dependencies": {
+        "@ssc-hermes/request": "../"
+    }
+}

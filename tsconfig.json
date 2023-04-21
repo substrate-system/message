@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
     "listFiles": true,
-    "module": "ES2020",
-    "target": "ES2020",
+    "module": "ES2022",
+    "target": "ES2022",
     "moduleResolution": "Node",
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "lib": ["ES2021", "DOM", "WebWorker"],
     "allowJs": false,
     "skipLibCheck": true,
     "outDir": "dist",
+    "rootDir": "src",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
