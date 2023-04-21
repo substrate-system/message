@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@oddjs/odd": "^0.37.0",
+    "@ssc-hermes/node-components": "^0.0.4",
     "@typescript-eslint/parser": "^5.55.0",
     "esbuild": "^0.15.18",
     "standardx": "^7.0.0",
