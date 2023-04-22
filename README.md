@@ -13,6 +13,7 @@ npm i @ssc-hermes/message
 ### create a message
 ```js
 import { create } from '@ssc-hermes/message'
+
 // const { crypto } = program.components
 await create(crypto, { type: 'test', value: 'wooo' })
 ```
