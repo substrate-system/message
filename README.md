@@ -32,6 +32,10 @@ import { create } from '@ssc-hermes/message'
 
 let req
 test('create message', async t => {
+    // program is from
+    // const program = await odd.program({
+    //   ...config
+    // })
     const { crypto } = program.components
 
     req = await create(crypto, { type: 'test', value: 'wooo' })
