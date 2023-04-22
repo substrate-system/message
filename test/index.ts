@@ -1,7 +1,8 @@
 import * as odd from '@oddjs/odd'
 import { components } from '@ssc-hermes/node-components'
 import { test } from 'tapzero'
-import { create } from '@ssc-hermes/request'
+import { create, verify } from '@ssc-hermes/request'
+import { writeKeyToDid } from '@ssc-hermes/util'
 
 let program
 
@@ -22,4 +23,10 @@ test('create request', async t => {
     t.ok(req, 'request was created')
     t.equal(typeof req.signature, 'string', 'should have a signature')
     t.equal(req.type, 'test', 'should have the properties we passed in')
+})
+
+test('verify a message', async t => {
+    const authorDID = await writeKeyToDid(program.components.crypto)
+    const isOk = await verify(authorDID, req)
+    t.equal(isOk, true, 'should return true for a valid message')
 })
