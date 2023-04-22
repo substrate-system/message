@@ -24,7 +24,7 @@ The returned object has a format like
     ...message
 }
 ```
-Note it will have the fields `author` and `signature` appended to it.
+Note, it will have the fields `author` and `signature` appended to it.
 
 ```js
 import { test } from 'tapzero'
