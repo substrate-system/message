@@ -2,7 +2,7 @@
   "name": "@ssc-hermes/request",
   "type": "module",
   "description": "Create and verify signed requests",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "src/index.ts",
   "scripts": {
     "lint": "standardx -v \"./**/*.ts\"",
