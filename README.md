@@ -12,17 +12,32 @@ npm i @ssc-hermes/request
 
 ### create a request
 ```js
+import { create } from '@ssc-hermes/request'
+await create(crypto, { type: 'test', value: 'wooo' })
+```
+
+The returned object has a format like
+```js
+{
+    author: 'did:key:...',
+    signature: '123abc',
+    ...message
+}
+```
+Note it will have the fields `author` and `signature` appended to it.
+
+```js
 import { test } from 'tapzero'
 import { create } from '@ssc-hermes/request'
 
 let req
 test('create request', async t => {
-    // program is from `odd.program({...})`
-    const { keystore } = program.components.crypto
+    const { crypto } = program.components
 
-    req = await create(keystore, { type: 'test', value: 'wooo' })
+    req = await create(crypto, { type: 'test', value: 'wooo' })
     t.ok(req, 'request was created')
     t.equal(typeof req.signature, 'string', 'should have a signature')
+    t.ok(req.author.includes, 'did:key:', 'should have an author field')
     t.equal(req.type, 'test', 'should have the properties we passed in')
 })
 ```
@@ -30,13 +45,11 @@ test('create request', async t => {
 ### verify a request
 ```js
 import { test } from 'tapzero'
-import { writeKeyToDid } from '@ssc-hermes/util'
 import { verify } from '@ssc-hermes/request'
 
 test('verify a message', async t => {
-    const authorDID = await writeKeyToDid(program.components.crypto)
-    // pass in the author's DID, and the request itself
-    const isOk = await verify(authorDID, req)
+    // `req` is the request we created above
+    const isOk = await verify(req)
     t.equal(isOk, true, 'should return true for a valid message')
 })
 ```

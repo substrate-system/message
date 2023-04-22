@@ -1,22 +1,26 @@
-import { verify as utilVerify, sign, toString } from '@ssc-hermes/util'
+import { verify as utilVerify, sign, toString, writeKeyToDid } from '@ssc-hermes/util'
 import stringify from 'json-stable-stringify'
-import { Implementation } from '@oddjs/odd/components/crypto/implementation'
-type KeyStore = Implementation['keystore']
+import { Crypto } from '@oddjs/odd'
 
 interface SignedRequest {
-    signature: string,
-    [key: string]: any
+    signature:string,
+    author:string,
+    [key: string]:any
 }
 
-export async function create (keystore:KeyStore, obj:object):Promise<SignedRequest> {
-    const sig = toString(await sign(keystore, stringify(obj)))
-    const req = { ...obj, signature: sig }
+export async function create (crypto:Crypto.Implementation, obj:object):
+Promise<SignedRequest> {
+    const author = await writeKeyToDid(crypto)
+    const content = { ...obj, author }
+    const sig = toString(await sign(crypto.keystore, stringify(content)))
+    const req = { ...content, signature: sig }
     return req
 }
 
-export async function verify (authorDID:string, msg:SignedRequest) {
+export async function verify (msg:SignedRequest) {
     const sig = msg.signature
-    const _msg:Partial<SignedRequest> = Object.assign({}, msg)
-    delete _msg.signature
-    return (await utilVerify(authorDID, sig, stringify(_msg)))
+    const authorDID = msg.author
+    const msgContent:Partial<SignedRequest> = Object.assign({}, msg)
+    delete msgContent.signature
+    return (await utilVerify(authorDID, sig, stringify(msgContent)))
 }
