@@ -30,3 +30,9 @@ test('verify a message', async t => {
     const isOk = await verify(authorDID, req)
     t.equal(isOk, true, 'should return true for a valid message')
 })
+
+test('verify an invalid message', async t => {
+    const authorDID = await writeKeyToDid(program.components.crypto)
+    const isOk = await verify(authorDID, Object.assign({ foo: 'bar' }, req))
+    t.equal(isOk, false, 'should return false for an invalid message')
+})
