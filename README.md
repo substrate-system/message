@@ -1,4 +1,4 @@
-# message
+# message ![tests](https://github.com/nichoth/template-ts/actions/workflows/nodejs.yml/badge.svg)
 
 Create and verify signed messages with existing [Fission](https://github.com/oddsdk/ts-odd) libraries.
 
