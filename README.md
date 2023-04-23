@@ -28,8 +28,8 @@ The returned object has a format like
 ```
 **Note**
 the message will have the fields `author` and `signature` appended to
-it.  `author` is the DID that was used to sign this message. It is used if you
-call `verify(message)`.
+it.  `author` is the DID that was used to sign this message. It is read by 
+`verify(message)`.
 
 ```js
 import { test } from 'tapzero'
