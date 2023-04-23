@@ -26,7 +26,10 @@ The returned object has a format like
     ...message
 }
 ```
-Note, it will have the fields `author` and `signature` appended to it.
+**Note**
+the message will have the fields `author` and `signature` appended to
+it.  `author` is the DID that was used to sign this message. It is used if you
+call `verify(message)`.
 
 ```js
 import { test } from 'tapzero'
