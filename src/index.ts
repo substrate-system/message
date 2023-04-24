@@ -5,7 +5,7 @@ import { Crypto } from '@oddjs/odd'
 interface SignedRequest {
     signature:string,
     author:string,
-    [key: string]:any
+    [key: string]:string|number  // serializable values
 }
 
 export async function create (crypto:Crypto.Implementation, obj:object):
@@ -13,8 +13,7 @@ Promise<SignedRequest> {
     const author = await writeKeyToDid(crypto)
     const content = { ...obj, author }
     const sig = toString(await sign(crypto.keystore, stringify(content)))
-    const req = { ...content, signature: sig }
-    return req
+    return { ...content, signature: sig }
 }
 
 export async function verify (msg:SignedRequest) {
