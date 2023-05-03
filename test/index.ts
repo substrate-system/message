@@ -1,7 +1,7 @@
 import * as odd from '@oddjs/odd'
 import { components } from '@ssc-hermes/node-components'
 import { test } from 'tapzero'
-import { create, verify } from '@ssc-hermes/request'
+import { create, verify } from '@ssc-hermes/message'
 
 let program
 

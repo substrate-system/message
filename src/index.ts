@@ -2,7 +2,7 @@ import { verify as utilVerify, sign, toString, writeKeyToDid } from '@ssc-hermes
 import stringify from 'json-stable-stringify'
 import { Crypto } from '@oddjs/odd'
 
-interface SignedRequest {
+export interface SignedRequest {
     signature:string,
     author:string,
     [key:string]:string|number  // serializable values
