@@ -5,7 +5,7 @@ import { Crypto } from '@oddjs/odd'
 interface SignedRequest {
     signature:string,
     author:string,
-    [key: string]:string|number  // serializable values
+    [key:string]:string|number  // serializable values
 }
 
 export async function create (crypto:Crypto.Implementation, obj:object):

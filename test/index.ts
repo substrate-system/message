@@ -17,9 +17,7 @@ test('setup', async t => {
 let req
 test('create request', async t => {
     const { crypto } = program.components
-    // const { keystore } = program.components.crypto
 
-    // req = await create(keystore, { type: 'test', value: 'wooo' })
     req = await create(crypto, { type: 'test', value: 'wooo' })
     t.ok(req, 'request was created')
     t.equal(typeof req.signature, 'string', 'should have a signature')
