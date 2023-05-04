@@ -1,7 +1,6 @@
 import * as odd from '@oddjs/odd'
 import { components } from '@ssc-hermes/node-components'
 import { test } from 'tapzero'
-// import { create, verify } from '@ssc-hermes/message'
 import * as msg from '@ssc-hermes/message'
 import { SignedRequest } from '@ssc-hermes/message'
 
@@ -17,6 +16,7 @@ test('setup', async t => {
 })
 
 let req:SignedRequest<{type:string, value:string}>
+
 test('create request', async t => {
     const { crypto } = program.components
 
