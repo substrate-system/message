@@ -2,24 +2,34 @@ import { verify as utilVerify, sign, toString, writeKeyToDid } from '@ssc-hermes
 import stringify from 'json-stable-stringify'
 import { Crypto } from '@oddjs/odd'
 
-export interface SignedRequest {
-    signature:string,
-    author:string,
-    [key:string]:string|number  // serializable values
-}
+export type SignedRequest<T> = ({
+    [K in keyof T]:T[K];
+} & {
+    signature:string;
+    author:string;
+})
 
-export async function create (crypto:Crypto.Implementation, obj:object):
-Promise<SignedRequest> {
+type NotEmpty<T> = keyof T extends never ? never : T
+
+export async function create<T> (
+    crypto:Crypto.Implementation,
+    obj:NotEmpty<T>
+): Promise<SignedRequest<T>> {
     const author = await writeKeyToDid(crypto)
     const content = { ...obj, author }
     const sig = toString(await sign(crypto.keystore, stringify(content)))
     return { ...content, signature: sig }
 }
 
-export async function verify (msg:SignedRequest) {
+type Request = { [key:string]:any } & {
+    signature:string,
+    author:string
+}
+
+export async function verify (msg:SignedRequest<Request>) {
     const sig = msg.signature
     const authorDID = msg.author
-    const msgContent:Partial<SignedRequest> = Object.assign({}, msg)
+    const msgContent:Partial<SignedRequest<Request>> = Object.assign({}, msg)
     delete msgContent.signature
     return (await utilVerify(authorDID, sig, stringify(msgContent)))
 }

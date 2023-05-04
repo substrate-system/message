@@ -1,7 +1,9 @@
 import * as odd from '@oddjs/odd'
 import { components } from '@ssc-hermes/node-components'
 import { test } from 'tapzero'
-import { create, verify } from '@ssc-hermes/message'
+// import { create, verify } from '@ssc-hermes/message'
+import * as msg from '@ssc-hermes/message'
+import { SignedRequest } from '@ssc-hermes/message'
 
 let program
 
@@ -14,11 +16,11 @@ test('setup', async t => {
     t.ok(program, 'create a program')
 })
 
-let req
+let req:SignedRequest<{type:string, value:string}>
 test('create request', async t => {
     const { crypto } = program.components
 
-    req = await create(crypto, { type: 'test', value: 'wooo' })
+    req = await msg.create(crypto, { type: 'test', value: 'wooo' })
     t.ok(req, 'request was created')
     t.equal(typeof req.signature, 'string', 'should have a signature')
     t.ok(req.author.includes, 'did:key:', 'should have an author field')
@@ -26,11 +28,11 @@ test('create request', async t => {
 })
 
 test('verify a message', async t => {
-    const isOk = await verify(req)
+    const isOk = await msg.verify(req)
     t.equal(isOk, true, 'should return true for a valid message')
 })
 
 test('verify an invalid message', async t => {
-    const isOk = await verify(Object.assign({ foo: 'bar' }, req))
+    const isOk = await msg.verify(Object.assign({ foo: 'bar' }, req))
     t.equal(isOk, false, 'should return false for an invalid message')
 })
