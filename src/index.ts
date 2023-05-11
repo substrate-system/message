@@ -26,7 +26,7 @@ type Request = { [key:string]:any } & {
     author:string
 }
 
-export async function verify (msg:SignedRequest<Request>) {
+export async function verify (msg:SignedRequest<Request>):Promise<boolean> {
     const sig = msg.signature
     const authorDID = msg.author
     const msgContent:Partial<SignedRequest<Request>> = Object.assign({}, msg)
