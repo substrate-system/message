@@ -2,7 +2,7 @@
   "name": "@ssc-hermes/message",
   "type": "module",
   "description": "Create and verify signed messages",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "src/index.ts",
   "scripts": {
     "lint": "standardx -v \"./**/*.ts\"",
