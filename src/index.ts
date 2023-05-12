@@ -1,5 +1,5 @@
 import { verify as utilVerify, sign, toString, writeKeyToDid } from '@ssc-hermes/util'
-import stringify from 'json-stable-stringify'
+import stringify from 'json-canon'
 import { Crypto } from '@oddjs/odd'
 
 export type SignedRequest<T> = ({
