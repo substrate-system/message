@@ -44,10 +44,6 @@
       ]
     }
   },
-  "keywords": [
-    "template",
-    "typescript"
-  ],
   "author": "nichoth <nichoth@gmail.com> (https://nichoth.com)",
   "license": "AGPL-3.0-or-later"
 }
