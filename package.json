@@ -2,6 +2,7 @@
   "name": "@ssc-hermes/message",
   "type": "module",
   "description": "Create and verify signed messages",
+  "author": "nichoth <nichoth@gmail.com> (https://nichoth.com)",
   "version": "0.4.1",
   "main": "src/index.ts",
   "scripts": {
@@ -15,7 +16,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@ssc-hermes/util": "^0.2.1",
+    "@ssc-hermes/util": "^0.7.0",
     "json-canon": "^1.0.1"
   },
   "devDependencies": {
@@ -44,6 +45,8 @@
       ]
     }
   },
-  "author": "nichoth <nichoth@gmail.com> (https://nichoth.com)",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "license": "AGPL-3.0-or-later"
 }
