@@ -1,8 +1,8 @@
 import * as odd from '@oddjs/odd'
 import { components } from '@ssc-hermes/node-components'
 import { test } from 'tapzero'
-import * as msg from '@ssc-hermes/message'
-import { SignedRequest } from '@ssc-hermes/message'
+import * as msg from '../dist/index.js'
+import { SignedRequest } from '../dist/index.js'
 
 let program
 
