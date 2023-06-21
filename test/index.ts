@@ -1,6 +1,6 @@
 import * as odd from '@oddjs/odd'
 import { components } from '@ssc-hermes/node-components'
-import { test } from 'tapzero'
+import { test } from '@socketsupply/tapzero'
 import * as msg from '../dist/index.js'
 import { SignedRequest } from '../dist/index.js'
 
