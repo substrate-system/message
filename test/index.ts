@@ -23,7 +23,7 @@ test('create request', async t => {
     req = await msg.create(crypto, { type: 'test', value: 'wooo' })
     t.ok(req, 'request was created')
     t.equal(typeof req.signature, 'string', 'should have a signature')
-    t.ok(req.author.includes, 'did:key:', 'should have an author field')
+    t.ok(req.author.includes('did:key:'), 'should have an author field')
     t.equal(req.type, 'test', 'should have the properties we passed in')
 })
 
