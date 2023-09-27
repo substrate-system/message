@@ -13,7 +13,7 @@
     "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc",
     "preversion": "npm run lint",
     "preinstall": "export $(cat .env | grep -v \"#\" | xargs)",
-    "postversion": "git push && git push --tags && export $(cat .env | grep -v \"#\" | xargs) && npm publish && npm publish --@ssc-hermes:registry=https://registry.npmjs.org",
+    "postversion": "git push && git push --tags && export $(cat .env | grep -v \"#\" | xargs) && npm publish && npm publish --@ssc-half-light:registry=https://registry.npmjs.org",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
