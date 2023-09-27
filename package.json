@@ -1,5 +1,5 @@
 {
-  "name": "@ssc-hermes/message",
+  "name": "@ssc-half-light/message",
   "type": "module",
   "description": "Create and verify signed messages",
   "author": "nichoth <nichoth@gmail.com> (https://nichoth.com)",
