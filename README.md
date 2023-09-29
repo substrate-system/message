@@ -1,18 +1,18 @@
-# message ![tests](https://github.com/ssc-hermes/message/actions/workflows/nodejs.yml/badge.svg)
+# message ![tests](https://github.com/ssc-half-light/message/actions/workflows/nodejs.yml/badge.svg)
 
 Create and verify signed messages with existing [Fission](https://github.com/oddsdk/ts-odd) libraries.
 
 ## install
 
 ```
-npm i @ssc-hermes/message
+npm i @ssc-half-light/message
 ```
 
 ## example
 
 ### create a message
 ```js
-import { create } from '@ssc-hermes/message'
+import { create } from '@ssc-half-light/message'
 
 // const { crypto } = program.components
 await create(crypto, { type: 'test', value: 'wooo' })
@@ -33,7 +33,7 @@ it.  `author` is the DID that was used to sign this message. It is read by
 
 ```js
 import { test } from 'tapzero'
-import { create } from '@ssc-hermes/message'
+import { create } from '@ssc-half-light/message'
 
 let req
 test('create message', async t => {
@@ -54,7 +54,7 @@ test('create message', async t => {
 ### verify a message
 ```js
 import { test } from 'tapzero'
-import { verify } from '@ssc-hermes/message'
+import { verify } from '@ssc-half-light/message'
 
 test('verify a message', async t => {
     // `req` is the message we created above
@@ -62,3 +62,4 @@ test('verify a message', async t => {
     t.equal(isOk, true, 'should return true for a valid message')
 })
 ```
+
