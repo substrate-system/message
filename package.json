@@ -17,7 +17,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@ssc-half-light/util": "^0.10.2",
+    "@ssc-half-light/util": "^0.10.3",
     "json-canon": "^1.0.1"
   },
   "devDependencies": {
