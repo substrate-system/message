@@ -28,7 +28,7 @@ export async function create<T> (
 
 type Request = { [key:string]:any } & {
     signature:string,
-    author:string
+    author:`did:key:z${string}`
 }
 
 export async function verify (msg:SignedRequest<Request>):Promise<boolean> {
