@@ -3,7 +3,7 @@
   "type": "module",
   "description": "Create and verify signed messages",
   "author": "nichoth <nichoth@gmail.com> (https://nichoth.com)",
-  "version": "0.5.10",
+  "version": "0.5.11",
   "main": "src/index.ts",
   "scripts": {
     "lint": "standardx -v \"./**/*.ts\"",
