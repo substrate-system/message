@@ -11,7 +11,7 @@ export type SignedRequest<T> = ({
     [K in keyof T]:T[K];
 } & {
     signature:string;
-    author:string;
+    author:`did:key:z${string}`;
 })
 
 type NotEmpty<T> = keyof T extends never ? never : T
