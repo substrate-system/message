@@ -1,6 +1,6 @@
 # message ![tests](https://github.com/ssc-half-light/message/actions/workflows/nodejs.yml/badge.svg)
 
-Create and verify signed messages with existing [Fission](https://github.com/oddsdk/ts-odd) libraries.
+Create and verify signed messages with [Fission](https://github.com/oddsdk/ts-odd) libraries.
 
 ## install
 
