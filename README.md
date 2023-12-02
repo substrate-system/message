@@ -1,10 +1,15 @@
-# message ![tests](https://github.com/ssc-half-light/message/actions/workflows/nodejs.yml/badge.svg)
+# message
+
+![tests](https://github.com/ssc-half-light/message/actions/workflows/nodejs.yml/badge.svg)
+[![Socket Badge](https://socket.dev/api/badge/npm/package/@ssc-half-light/message)](https://socket.dev/npm/package/@ssc-half-light/message)
+[![module](https://img.shields.io/badge/module-ESM%2FCJS-blue)](README.md)
+[![license](https://img.shields.io/badge/license-PolyForm%20Shield-fc9662)](LICENSE)
 
 Create and verify signed messages with [Fission](https://github.com/oddsdk/ts-odd) libraries.
 
 ## install
 
-```
+```sh
 npm i @ssc-half-light/message
 ```
 
@@ -26,10 +31,9 @@ The returned object has a format like
     ...message
 }
 ```
-**Note**
-the message will have the fields `author` and `signature` appended to
-it.  `author` is the DID that was used to sign this message. It is read by 
-`verify(message)`.
+
+> [!NOTE]  
+> the message will have the fields `author` and `signature` appended to it. `author` is the DID that was used to sign this message. It is read by `verify(message)`.
 
 ```js
 import { test } from 'tapzero'
