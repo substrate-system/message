@@ -36,7 +36,7 @@ The returned object has a format like
 > the message will have the fields `author` and `signature` appended to it. `author` is the DID that was used to sign this message. It is read by `verify(message)`.
 
 ```js
-import { test } from 'tapzero'
+import { test } from '@nichoth/tapzero'
 import { create } from '@ssc-half-light/message'
 
 let req
@@ -57,7 +57,7 @@ test('create message', async t => {
 
 ### verify a message
 ```js
-import { test } from 'tapzero'
+import { test } from '@nichoth/tapzero'
 import { verify } from '@ssc-half-light/message'
 
 test('verify a message', async t => {
