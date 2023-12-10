@@ -26,15 +26,15 @@ export async function create<T> (
     return { ...content, signature: sig }
 }
 
-type Request = { [key:string]:any } & {
+export type RequestMsg = { [key:string]:any } & {
     signature:string,
     author:`did:key:z${string}`
 }
 
-export async function verify (msg:SignedRequest<Request>):Promise<boolean> {
+export async function verify (msg:SignedRequest<RequestMsg>):Promise<boolean> {
     const sig = msg.signature
     const authorDID = msg.author
-    const msgContent:Partial<SignedRequest<Request>> = Object.assign({}, msg)
+    const msgContent:Partial<SignedRequest<RequestMsg>> = Object.assign({}, msg)
     delete msgContent.signature
     return (await utilVerify(authorDID, sig, stringify(msgContent)))
 }
