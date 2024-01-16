@@ -2,7 +2,7 @@ import * as odd from '@oddjs/odd'
 import { components } from '@ssc-hermes/node-components'
 import { test } from '@nichoth/tapzero'
 import * as msg from '../dist/index.js'
-import { SignedRequest } from '../dist/index.js'
+import { SignedMessage } from '../dist/index.js'
 
 let program
 
@@ -15,7 +15,7 @@ test('setup', async t => {
     t.ok(program, 'create a program')
 })
 
-let req:SignedRequest<{type:string, value:string}>
+let req:SignedMessage<{type:string, value:string}>
 
 test('create request', async t => {
     const { crypto } = program.components
