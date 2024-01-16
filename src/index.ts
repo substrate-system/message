@@ -7,7 +7,7 @@ import {
 import stringify from 'json-canon'
 import { Crypto } from '@oddjs/odd'
 
-export type SignedRequest<T> = ({
+export type SignedMessage<T> = ({
     [K in keyof T]:T[K];
 } & {
     signature:string;
@@ -19,7 +19,7 @@ type NotEmpty<T> = keyof T extends never ? never : T
 export async function create<T> (
     crypto:Crypto.Implementation,
     obj:NotEmpty<T>
-): Promise<SignedRequest<T>> {
+): Promise<SignedMessage<T>> {
     const author = await writeKeyToDid(crypto)
     const content = { ...obj, author }
     const sig = toString(await sign(crypto.keystore, stringify(content)))
@@ -31,10 +31,10 @@ export type RequestMsg = { [key:string]:any } & {
     author:`did:key:z${string}`
 }
 
-export async function verify (msg:SignedRequest<RequestMsg>):Promise<boolean> {
+export async function verify (msg:SignedMessage<RequestMsg>):Promise<boolean> {
     const sig = msg.signature
     const authorDID = msg.author
-    const msgContent:Partial<SignedRequest<RequestMsg>> = Object.assign({}, msg)
+    const msgContent:Partial<SignedMessage<RequestMsg>> = Object.assign({}, msg)
     delete msgContent.signature
     return (await utilVerify(authorDID, sig, stringify(msgContent)))
 }
