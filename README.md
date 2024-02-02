@@ -2,8 +2,10 @@
 
 ![tests](https://github.com/ssc-half-light/message/actions/workflows/nodejs.yml/badge.svg)
 [![Socket Badge](https://socket.dev/api/badge/npm/package/@ssc-half-light/message)](https://socket.dev/npm/package/@ssc-half-light/message)
-[![module](https://img.shields.io/badge/module-ESM%2FCJS-blue)](README.md)
-[![license](https://img.shields.io/badge/license-PolyForm%20Shield-fc9662)](LICENSE)
+[![types](https://img.shields.io/npm/types/msgpackr?style=flat-square)](README.md)
+[![module](https://img.shields.io/badge/module-ESM%2FCJS-blue?style=flat-square)](README.md)
+[![license](https://nichoth.github.io/badge/license-polyform-shield.svg)](LICENSE)
+
 
 Create and verify signed messages with [Fission](https://github.com/oddsdk/ts-odd) libraries.
 
