@@ -1,8 +1,8 @@
 {
-  "name": "@ssc-half-light/message",
+  "name": "@bicycle-codes/message",
   "type": "module",
   "description": "Create and verify signed messages",
-  "author": "nichoth <nichoth@gmail.com> (https://nichoth.com)",
+  "author": "nichoth <nichoth@nichoth.com> (https://nichoth.com)",
   "version": "0.6.1",
   "main": "src/index.ts",
   "scripts": {
@@ -13,7 +13,7 @@
     "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc --project tsconfig.build.json",
     "preversion": "npm run lint",
     "preinstall": "export $(cat .env | grep -v \"#\" | xargs)",
-    "postversion": "git push && git push --tags && export $(cat .env | grep -v \"#\" | xargs) && npm publish && npm publish --@ssc-half-light:registry=https://registry.npmjs.org",
+    "postversion": "git push && git push --tags && export $(cat .env | grep -v \"#\" | xargs) && npm publish",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
@@ -46,22 +46,19 @@
       ]
     }
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "license": "SEE LICENSE IN LICENSE",
   "directories": {
     "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ssc-half-light/message.git"
+    "url": "git+https://github.com/bicycle-codes/message.git"
   },
   "keywords": [
     "message"
   ],
   "bugs": {
-    "url": "https://github.com/ssc-half-light/message/issues"
+    "url": "https://github.com/bicycle-codes/message/issues"
   },
-  "homepage": "https://github.com/ssc-half-light/message#readme"
+  "homepage": "https://github.com/bicycle-codes/message#readme"
 }
