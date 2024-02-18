@@ -1,5 +1,5 @@
 import * as odd from '@oddjs/odd'
-import { components } from '@ssc-hermes/node-components'
+import { components } from '@ssc-half-light/node-components'
 import { test } from '@nichoth/tapzero'
 import * as msg from '../dist/index.js'
 import { SignedMessage } from '../dist/index.js'

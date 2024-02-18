@@ -11,8 +11,9 @@
     "test": "npm run build && npm run build-tests && NODE_ENV=test node ./test/index.js | tap-arc",
     "build-cjs": "esbuild src/*.ts --format=cjs --keep-names --outdir=./dist --out-extension:.js=.cjs",
     "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc --project tsconfig.build.json",
-    "preversion": "npm run lint",
     "preinstall": "export $(cat .env | grep -v \"#\" | xargs)",
+    "preversion": "npm run lint",
+    "version": "auto-changelog -p --template keepachangelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md",
     "postversion": "git push && git push --tags && export $(cat .env | grep -v \"#\" | xargs) && npm publish",
     "prepublishOnly": "npm run build"
   },
@@ -21,14 +22,16 @@
     "json-canon": "^1.0.1"
   },
   "devDependencies": {
+    "@nichoth/debug": "^0.6.1",
     "@nichoth/tapzero": "^0.8.4",
     "@oddjs/odd": "^0.37.0",
-    "@ssc-hermes/node-components": "^0.1.10",
+    "@ssc-half-light/node-components": "^0.1.22",
     "@typescript-eslint/parser": "^5.55.0",
-    "esbuild": "^0.15.18",
+    "auto-changelog": "^2.4.0",
+    "esbuild": "^0.20.0",
     "standardx": "^7.0.0",
-    "tap-arc": "^0.3.5",
-    "typescript": "^5.0.2"
+    "tap-arc": "^1.2.2",
+    "typescript": "^5.3.3"
   },
   "exports": {
     ".": {
