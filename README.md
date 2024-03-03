@@ -7,12 +7,12 @@
 [![license](https://nichoth.github.io/badge/license-polyform-shield.svg)](LICENSE)
 
 
-Create and verify signed messages with [Fission](https://github.com/oddsdk/ts-odd) libraries.
+Create and verify signed messages with [Fission](https://github.com/oddsdk/ts-odd) crypto libraries.
 
 ## install
 
 ```sh
-npm i @bicycle-codes/message
+npm i -S @bicycle-codes/message
 ```
 
 ## example
