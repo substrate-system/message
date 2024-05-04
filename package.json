@@ -4,6 +4,9 @@
   "description": "Create and verify signed messages",
   "author": "nichoth <nichoth@nichoth.com> (https://nichoth.com)",
   "version": "0.7.2",
+  "files": [
+    "./dist/*"
+  ],
   "main": "src/index.ts",
   "scripts": {
     "lint": "eslint \"./**/*.{ts,js}\"",
