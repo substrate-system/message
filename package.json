@@ -25,7 +25,7 @@
     "json-canon": "^1.0.1"
   },
   "devDependencies": {
-    "@bicycle-codes/tapzero": "^0.9.2",
+    "@bicycle-codes/tapzero": "^0.10.0",
     "@nichoth/debug": "^0.6.1",
     "@oddjs/odd": "^0.37.0",
     "@ssc-half-light/node-components": "^0.1.22",
