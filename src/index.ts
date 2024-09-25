@@ -1,11 +1,10 @@
+import { toString } from '@bicycle-codes/crypto-util'
 import {
-    verify as utilVerify,
+    publicKeyToDid,
     sign,
-    toString,
-    writeKeyToDid
-} from '@ssc-half-light/util'
+    verifyWithDid
+} from '@bicycle-codes/crypto-util/webcrypto/rsa'
 import stringify from 'json-canon'
-import { Crypto } from '@oddjs/odd'
 
 export type SignedMessage<T> = ({
     [K in keyof T]:T[K];
@@ -17,12 +16,15 @@ export type SignedMessage<T> = ({
 type NotEmpty<T> = keyof T extends never ? never : T
 
 export async function create<T> (
-    crypto:Crypto.Implementation,
+    keypair:CryptoKeyPair,
     obj:NotEmpty<T>
 ): Promise<SignedMessage<T>> {
-    const author = await writeKeyToDid(crypto)
-    const content = { ...obj, author }
-    const sig = toString(await sign(crypto.keystore, stringify(content)))
+    const authorDid = await publicKeyToDid(keypair.publicKey)
+    const content = { ...obj, author: authorDid }
+    const sig = toString(
+        new Uint8Array(await sign(stringify(content), keypair.privateKey))
+    )
+
     return { ...content, signature: sig }
 }
 
@@ -36,5 +38,5 @@ export async function verify (msg:SignedMessage<RequestMsg>):Promise<boolean> {
     const authorDID = msg.author
     const msgContent:Partial<SignedMessage<RequestMsg>> = Object.assign({}, msg)
     delete msgContent.signature
-    return (await utilVerify(authorDID, sig, stringify(msgContent)))
+    return (await verifyWithDid(stringify(msgContent), sig, authorDID))
 }

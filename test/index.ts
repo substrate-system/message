@@ -1,30 +1,25 @@
-import * as odd from '@oddjs/odd'
-import { components } from '@ssc-half-light/node-components'
-import { test } from '@nichoth/tapzero'
+import { test } from '@bicycle-codes/tapzero'
+import { create } from '@bicycle-codes/crypto-util/webcrypto/rsa'
 import * as msg from '../dist/index.js'
 import { SignedMessage } from '../dist/index.js'
+import { KeyUse } from '@bicycle-codes/crypto-util'
 
-let program
+let alicesKeys:CryptoKeyPair
 
 test('setup', async t => {
-    program = await odd.assemble({
-        namespace: { creator: 'test', name: 'testing' },
-        debug: false
-    }, components)
-
-    t.ok(program, 'create a program')
+    alicesKeys = await create(KeyUse.Sign)
+    t.ok(alicesKeys, 'create keys')
 })
 
-let req:SignedMessage<{type:string, value:string}>
+let req:SignedMessage<{ hello: 'world' }>
 
 test('create request', async t => {
-    const { crypto } = program.components
+    req = await msg.create(alicesKeys, { hello: 'world' })
 
-    req = await msg.create(crypto, { type: 'test', value: 'wooo' })
     t.ok(req, 'request was created')
     t.equal(typeof req.signature, 'string', 'should have a signature')
     t.ok(req.author.includes('did:key:'), 'should have an author field')
-    t.equal(req.type, 'test', 'should have the properties we passed in')
+    t.equal(req.hello, 'world', 'should have the properties we passed in')
 })
 
 test('verify a message', async t => {
