@@ -4,6 +4,7 @@
 [![Socket Badge](https://socket.dev/api/badge/npm/package/@bicycle-codes/message)](https://socket.dev/npm/package/@bicycle-codes/message)
 [![types](https://img.shields.io/npm/types/msgpackr?style=flat-square)](README.md)
 [![module](https://img.shields.io/badge/module-ESM%2FCJS-blue?style=flat-square)](README.md)
+[![install size](https://flat.badgen.net/packagephobia/install/@bicycle-codes/message)](https://packagephobia.com/result?p=@bicycle-codes/message)
 [![license](https://nichoth.github.io/badge/license-polyform-shield.svg)](LICENSE)
 
 

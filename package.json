@@ -11,7 +11,7 @@
   "scripts": {
     "lint": "eslint \"./**/*.{ts,js}\"",
     "build-tests": "esbuild ./test/*.ts --bundle --platform=node --format=esm --outdir=test --keep-names",
-    "test": "npm run build && npm run build-tests && NODE_ENV=test node ./test/index.js | tap-arc",
+    "test": "npm run build && npm run build-tests && NODE_ENV=test node ./test/index.js | tap-spec",
     "build-cjs": "esbuild src/*.ts --format=cjs --keep-names --outdir=./dist --out-extension:.js=.cjs",
     "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc --project tsconfig.build.json",
     "preversion": "npm run lint",
@@ -26,16 +26,13 @@
   },
   "devDependencies": {
     "@bicycle-codes/tapzero": "^0.10.0",
-    "@nichoth/debug": "^0.6.1",
-    "@oddjs/odd": "^0.37.0",
-    "@ssc-half-light/node-components": "^0.1.22",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "auto-changelog": "^2.4.0",
-    "esbuild": "^0.23.0",
+    "esbuild": "^0.24.0",
     "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
-    "tap-arc": "^1.2.2",
+    "tap-spec": "^5.0.0",
     "typescript": "^5.3.3"
   },
   "exports": {
