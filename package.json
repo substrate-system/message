@@ -21,7 +21,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@bicycle-codes/crypto-util": "^0.1.12",
+    "@bicycle-codes/crypto-util": "^0.2.3",
     "json-canon": "^1.0.1"
   },
   "devDependencies": {
