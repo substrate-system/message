@@ -1,8 +1,8 @@
-import { test } from '@bicycle-codes/tapzero'
+import { test } from '@substrate-system/tapzero'
 import { create } from '@bicycle-codes/crypto-util/webcrypto/rsa'
-import * as msg from '../dist/index.js'
-import { SignedMessage } from '../dist/index.js'
 import { KeyUse } from '@bicycle-codes/crypto-util'
+import * as msg from '../dist/index.js'
+import { type SignedMessage } from '../dist/index.js'
 
 let alicesKeys:CryptoKeyPair
 
@@ -13,7 +13,7 @@ test('setup', async t => {
 
 let req:SignedMessage<{ hello: 'world' }>
 
-test('create request', async t => {
+test('create a message', async t => {
     req = await msg.create(alicesKeys, { hello: 'world' })
 
     t.ok(req, 'request was created')

@@ -34,8 +34,8 @@ npm i -S @bicycle-codes/message
 ```js
 import { create } from '@bicycle-codes/message'
 
-// const { crypto } = program.components
-await create(crypto, { type: 'test', value: 'wooo' })
+const alicesKeys = await create(KeyUse.Sign)
+const req = await create(alicesKeys, { hello: 'world' })
 ```
 
 The returned object has a format like
@@ -47,26 +47,25 @@ The returned object has a format like
 }
 ```
 
+>
 > [!NOTE]  
-> the message will have the fields `author` and `signature` appended to it. `author` is the DID that was used to sign this message. It is read by `verify(message)`.
+> The message will have the fields `author` and `signature` appended to it.
+> `author` is the DID that was used to sign this message. It is read
+> by `verify(message)`.
+>
 
 ```js
-import { test } from '@nichoth/tapzero'
+import { test } from '@substrate-system/tapzero'
 import { create } from '@bicycle-codes/message'
 
-let req
-test('create message', async t => {
-    // program is from
-    // const program = await odd.program({
-    //   ...config
-    // })
-    const { crypto } = program.components
+let req:SignedMessage<{ hello: 'world' }>
+test('create a message', async t => {
+    req = await create(alicesKeys, { hello: 'world' })
 
-    req = await create(crypto, { type: 'test', value: 'wooo' })
-    t.ok(req, 'message was created')
+    t.ok(req, 'request was created')
     t.equal(typeof req.signature, 'string', 'should have a signature')
-    t.ok(req.author.includes, 'did:key:', 'should have an author field')
-    t.equal(req.type, 'test', 'should have the properties we passed in')
+    t.ok(req.author.includes('did:key:'), 'should have an author field')
+    t.equal(req.hello, 'world', 'should have the properties we passed in')
 })
 ```
 
