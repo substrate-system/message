@@ -1,9 +1,5 @@
-import { toString } from '@bicycle-codes/crypto-util'
-import {
-    publicKeyToDid,
-    sign,
-    verifyWithDid
-} from '@bicycle-codes/crypto-util/webcrypto/rsa'
+import { type Keys, verify as keysVerify } from '@bicycle-codes/keys'
+import { toString } from 'uint8arrays'
 import stringify from 'json-canon'
 
 export type SignedMessage<T> = ({
@@ -16,14 +12,12 @@ export type SignedMessage<T> = ({
 type NotEmpty<T> = keyof T extends never ? never : T
 
 export async function create<T> (
-    keypair:CryptoKeyPair,
+    keys:Keys,
     obj:NotEmpty<T>
-): Promise<SignedMessage<T>> {
-    const authorDid = await publicKeyToDid(keypair.publicKey)
+):Promise<SignedMessage<T>> {
+    const authorDid = await keys.DID
     const content = { ...obj, author: authorDid }
-    const sig = toString(
-        new Uint8Array(await sign(stringify(content), keypair.privateKey))
-    )
+    const sig = toString(await keys.sign(stringify(content)), 'base64pad')
 
     return { ...content, signature: sig }
 }
@@ -38,5 +32,5 @@ export async function verify (msg:SignedMessage<RequestMsg>):Promise<boolean> {
     const authorDID = msg.author
     const msgContent:Partial<SignedMessage<RequestMsg>> = Object.assign({}, msg)
     delete msgContent.signature
-    return (await verifyWithDid(stringify(msgContent), sig, authorDID))
+    return (await keysVerify(stringify(msgContent), sig, authorDID))
 }
