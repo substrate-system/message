@@ -32,9 +32,10 @@ npm i -S @bicycle-codes/message
 
 ### create a message
 ```js
+import { Keys } from '@bicycle-codes/keys'
 import { create } from '@bicycle-codes/message'
 
-const alicesKeys = await create(KeyUse.Sign)
+const alicesKeys = await Keys.create()
 const req = await create(alicesKeys, { hello: 'world' })
 ```
 
@@ -56,9 +57,11 @@ The returned object has a format like
 
 ```js
 import { test } from '@substrate-system/tapzero'
+import { Keys } from '@bicycle-codes/keys'
 import { create } from '@bicycle-codes/message'
 
 let req:SignedMessage<{ hello: 'world' }>
+const alicesKeys = await Keys.create()
 test('create a message', async t => {
     req = await create(alicesKeys, { hello: 'world' })
 
