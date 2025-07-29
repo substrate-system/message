@@ -4,7 +4,7 @@
 [![types](https://img.shields.io/npm/types/msgpackr?style=flat-square)](README.md)
 [![module](https://img.shields.io/badge/module-ESM%2FCJS-blue?style=flat-square)](README.md)
 [![install size](https://flat.badgen.net/packagephobia/install/@substrate-system/message)](https://packagephobia.com/result?p=@substrate-system/message)
-[![GZip size](https://flat.badgen.net/bundlephobia/minzip/@substrate-system/messsage)](https://bundlephobia.com/package/@substrate-system/messsage)
+[![GZip size](https://flat.badgen.net/bundlephobia/minzip/@substrate-system/message)](https://bundlephobia.com/package/@substrate-system/message)
 [![license](https://img.shields.io/badge/license-Big_Time-blue?style=flat-square)](LICENSE)
 
 
