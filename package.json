@@ -1,8 +1,8 @@
 {
-  "name": "@bicycle-codes/message",
+  "name": "@substrate-system/message",
+  "version": "0.9.1",
   "type": "module",
   "description": "Create and verify signed messages",
-  "version": "0.9.1",
   "files": [
     "./dist/*"
   ],
@@ -20,20 +20,20 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@bicycle-codes/keys": "^0.1.12",
+    "@substrate-system/keys": "^0.2.3",
     "json-canon": "^1.0.1"
   },
   "devDependencies": {
-    "@substrate-system/tapzero": "^0.10.13",
+    "@substrate-system/tapzero": "^0.10.15",
     "@typescript-eslint/eslint-plugin": "^8.7.0",
     "@typescript-eslint/parser": "^8.7.0",
     "auto-changelog": "^2.4.0",
-    "esbuild": "^0.25.0",
+    "esbuild": "^0.25.8",
     "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
     "markdown-toc": "^1.2.0",
     "tap-spec": "^5.0.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.8.3"
   },
   "exports": {
     ".": {
@@ -56,15 +56,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bicycle-codes/message.git"
+    "url": "git+https://github.com/substrate-system/message.git"
   },
   "keywords": [
     "message"
   ],
   "bugs": {
-    "url": "https://github.com/bicycle-codes/message/issues"
+    "url": "https://github.com/substrate-system/message/issues"
   },
   "license": "SEE LICENSE IN LICENSE",
   "author": "nichoth <nichoth@nichoth.com> (https://nichoth.com)",
-  "homepage": "https://github.com/bicycle-codes/message#readme"
+  "homepage": "https://github.com/substrate-system/message#readme"
 }

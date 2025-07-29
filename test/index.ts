@@ -1,7 +1,7 @@
 import { test } from '@substrate-system/tapzero'
+import { Keys } from '@substrate-system/keys'
 import * as msg from '../src/index.js'
 import { type SignedMessage } from '../dist/index.js'
-import { Keys } from '@bicycle-codes/keys'
 
 let alicesKeys:Keys
 

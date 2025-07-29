@@ -1,4 +1,4 @@
-import { type Keys, verify as keysVerify } from '@bicycle-codes/keys'
+import { type Keys, verify as keysVerify } from '@substrate-system/keys'
 import { toString } from 'uint8arrays'
 import stringify from 'json-canon'
 
