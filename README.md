@@ -15,10 +15,10 @@ Create and verify signed messages with [the webcrypto API](https://developer.moz
 
 <!-- toc -->
 
-- [install](#install)
-- [example](#example)
-  * [create a message](#create-a-message)
-  * [verify a message](#verify-a-message)
+- [Install](#install)
+- [Example](#example)
+  * [Create a message](#create-a-message)
+  * [Verify a message](#verify-a-message)
 
 <!-- tocstop -->
 
