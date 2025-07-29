@@ -22,15 +22,15 @@ Create and verify signed messages with [the webcrypto API](https://developer.moz
 
 <!-- tocstop -->
 
-## install
+## Install
 
 ```sh
 npm i -S @substrate-system/message
 ```
 
-## example
+## Example
 
-### create a message
+### Create a message
 ```js
 import { Keys } from '@substrate-system/keys'
 import { create } from '@substrate-system/message'
@@ -72,7 +72,7 @@ test('create a message', async t => {
 })
 ```
 
-### verify a message
+### Verify a message
 ```js
 import { test } from '@substrate-system/tapzero'
 import { verify } from '@substrate-system/message'
