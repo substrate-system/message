@@ -1,4 +1,7 @@
-import { type Keys, verify as keysVerify } from '@substrate-system/keys'
+import {
+    type AbstractKeys as Keys,
+} from '@substrate-system/keys'
+import { verify as keysVerify } from '@substrate-system/keys/crypto'
 import { toString } from 'uint8arrays'
 import stringify from 'json-canon'
 
@@ -32,5 +35,9 @@ export async function verify (msg:SignedMessage<RequestMsg>):Promise<boolean> {
     const authorDID = msg.author
     const msgContent:Partial<SignedMessage<RequestMsg>> = Object.assign({}, msg)
     delete msgContent.signature
-    return (await keysVerify(stringify(msgContent), sig, authorDID))
+    return (await keysVerify({
+        message: stringify(msgContent),
+        publicKey: authorDID,
+        signature: sig
+    }))
 }

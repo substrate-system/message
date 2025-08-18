@@ -1,12 +1,12 @@
 import { test } from '@substrate-system/tapzero'
-import { Keys } from '@substrate-system/keys'
-import * as msg from '../src/index.js'
+import { RsaKeys } from '@substrate-system/keys/rsa'
+import * as msg from '../dist/index.js'
 import { type SignedMessage } from '../dist/index.js'
 
-let alicesKeys:Keys
+let alicesKeys:RsaKeys
 
 test('setup', async t => {
-    alicesKeys = await Keys.create()
+    alicesKeys = await RsaKeys.create()
     t.ok(alicesKeys, 'create keys')
 })
 
