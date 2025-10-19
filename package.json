@@ -20,7 +20,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@substrate-system/keys": "^0.2.13",
+    "@substrate-system/keys": "^0.2.27",
     "json-canon": "^1.0.1"
   },
   "devDependencies": {
