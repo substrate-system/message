@@ -37,7 +37,7 @@ export async function verify (msg:SignedMessage<RequestMsg>):Promise<boolean> {
     delete msgContent.signature
     return (await keysVerify({
         message: stringify(msgContent),
-        publicKey: authorDID,
+        did: authorDID,
         signature: sig
     }))
 }
