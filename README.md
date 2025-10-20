@@ -36,7 +36,7 @@ import { Keys } from '@substrate-system/keys'
 import { create } from '@substrate-system/message'
 
 const alicesKeys = await Keys.create()
-const req = await create(alicesKeys, { hello: 'world' })
+const req = await create(alicesKeys.writeKey, { hello: 'world' })
 ```
 
 The returned object has a format like
@@ -63,7 +63,7 @@ import { create } from '@substrate-system/message'
 let req:SignedMessage<{ hello: 'world' }>
 const alicesKeys = await Keys.create()
 test('create a message', async t => {
-    req = await create(alicesKeys, { hello: 'world' })
+    req = await create(alicesKeys.writeKey, { hello: 'world' })
 
     t.ok(req, 'request was created')
     t.equal(typeof req.signature, 'string', 'should have a signature')
