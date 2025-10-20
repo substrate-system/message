@@ -1,7 +1,7 @@
 import { test } from '@substrate-system/tapzero'
 import { RsaKeys } from '@substrate-system/keys/rsa'
-import * as msg from '../dist/index.js'
-import { type SignedMessage } from '../dist/index.js'
+import * as msg from '../src/index.js'
+import { type SignedMessage } from '../src/index.js'
 
 let alicesKeys:RsaKeys
 
@@ -13,7 +13,7 @@ test('setup', async t => {
 let req:SignedMessage<{ hello: 'world' }>
 
 test('create a message', async t => {
-    req = await msg.create(alicesKeys, { hello: 'world' })
+    req = await msg.create(alicesKeys.writeKey, { hello: 'world' })
 
     t.ok(req, 'request was created')
     t.equal(typeof req.signature, 'string', 'should have a signature')
