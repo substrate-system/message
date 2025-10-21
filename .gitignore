@@ -5,3 +5,5 @@ src/*.js
 test/*.js
 dist
 .env
+.claude
+

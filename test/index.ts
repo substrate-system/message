@@ -1,5 +1,6 @@
 import { test } from '@substrate-system/tapzero'
 import { RsaKeys } from '@substrate-system/keys/rsa'
+import { EccKeys } from '@substrate-system/keys/ecc'
 import * as msg from '../src/index.js'
 import { type SignedMessage } from '../src/index.js'
 
@@ -8,6 +9,14 @@ let alicesKeys:RsaKeys
 test('setup', async t => {
     alicesKeys = await RsaKeys.create()
     t.ok(alicesKeys, 'create keys')
+})
+
+test('create a message with Ed25519 keys', async t => {
+    const eccKeys = await EccKeys.create()
+
+    const newMsg = await msg.create(eccKeys.writeKey, { abc: 123 })
+    t.ok(newMsg, 'should return something')
+    t.ok(newMsg.author.includes('did:key:'), 'should include a DID string')
 })
 
 let req:SignedMessage<{ hello: 'world' }>

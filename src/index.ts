@@ -7,7 +7,8 @@ import {
 import { webcrypto } from '@substrate-system/one-webcrypto'
 import { toString } from 'uint8arrays'
 import stringify from 'json-canon'
-import { DEFAULT_ECC_WRITE } from '@substrate-system/keys'
+import { ECC_WRITE_ALG } from '@substrate-system/keys/constants'
+// import { normalizeUnicodeToBuf } from '@substrate-system/keys/util'
 
 export type SignedMessage<T> = ({
     [K in keyof T]:T[K];
@@ -20,30 +21,35 @@ type NotEmpty<T> = keyof T extends never ? never : T
 
 export async function create<T> (
     keys:CryptoKeyPair,
-    obj:NotEmpty<T>
+    obj:NotEmpty<T>,
+    // charSize = 8
 ):Promise<SignedMessage<T>> {
-    // const authorDid = await keys.DID
     const authorDid = await publicKeyToDid(keys.publicKey)
     const keyType = keyTypeFromDid(authorDid)
 
     // now sign the message
     const content = { ...obj, author: authorDid }
-    // const sig = toString(await keys.sign(stringify(content)), 'base64pad')
+    const contentString = stringify(content)
+    const encoder = new TextEncoder()
+    const data = encoder.encode(contentString)
+
     let sig:string
     if (keyType === 'rsa') {
         sig = toString(
             new Uint8Array(
-                await rsaOperations.sign(stringify(content), keys.privateKey)
+                await rsaOperations.sign(data, keys.privateKey)
             ),
             'base64pad'
         )
     } else {
         // is ed25519
-        sig = toString(new Uint8Array(await webcrypto.subtle.sign(
-            { name: DEFAULT_ECC_WRITE },
+        const _sig = await webcrypto.subtle.sign(
+            { name: ECC_WRITE_ALG },
             keys.privateKey,
-            stringify(content)
-        )), 'base64pad')
+            data
+        )
+
+        sig = toString(new Uint8Array(_sig), 'base64pad')
     }
 
     return { ...content, signature: sig }
