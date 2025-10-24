@@ -32,7 +32,7 @@ npm i -S @substrate-system/message
 
 ### Create a message
 ```js
-import { Keys } from '@substrate-system/keys'
+import { EccKeys as Keys } from '@substrate-system/keys'
 import { create } from '@substrate-system/message'
 
 const alicesKeys = await Keys.create()

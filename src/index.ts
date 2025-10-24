@@ -7,7 +7,7 @@ import {
 import { webcrypto } from '@substrate-system/one-webcrypto'
 import { toString } from 'uint8arrays'
 import stringify from 'json-canon'
-import { ECC_WRITE_ALG } from '@substrate-system/keys/constants'
+import { ECC_WRITE_ALGORITHM } from '@substrate-system/keys/constants'
 // import { normalizeUnicodeToBuf } from '@substrate-system/keys/util'
 
 export type SignedMessage<T> = ({
@@ -44,7 +44,7 @@ export async function create<T> (
     } else {
         // is ed25519
         const _sig = await webcrypto.subtle.sign(
-            { name: ECC_WRITE_ALG },
+            { name: ECC_WRITE_ALGORITHM },
             keys.privateKey,
             data
         )
