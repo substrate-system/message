@@ -1,3 +1,4 @@
+import { toString } from 'uint8arrays'
 import {
     verify as keysVerify,
     keyTypeFromDid,
@@ -5,10 +6,8 @@ import {
     rsaOperations
 } from '@substrate-system/keys/crypto'
 import { webcrypto } from '@substrate-system/one-webcrypto'
-import { toString } from 'uint8arrays'
-import stringify from 'json-canon'
+import stringify from '@substrate-system/json-canon'
 import { ECC_WRITE_ALGORITHM } from '@substrate-system/keys/constants'
-// import { normalizeUnicodeToBuf } from '@substrate-system/keys/util'
 
 export type SignedMessage<T> = ({
     [K in keyof T]:T[K];
@@ -22,7 +21,6 @@ type NotEmpty<T> = keyof T extends never ? never : T
 export async function create<T> (
     keys:CryptoKeyPair,
     obj:NotEmpty<T>,
-    // charSize = 8
 ):Promise<SignedMessage<T>> {
     const authorDid = await publicKeyToDid(keys.publicKey)
     const keyType = keyTypeFromDid(authorDid)
