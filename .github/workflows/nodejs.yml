@@ -2,7 +2,7 @@ name: tests
 
 run-name: testing in node
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   test:

@@ -8,8 +8,7 @@ export default [
         ignores: [
             'dist/**',
             'public/**',
-            'test/*.js',
-            'lib.es5.d.ts'
+            'test/*.js'
         ]
     }),
 
