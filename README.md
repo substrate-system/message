@@ -1,14 +1,15 @@
 # message
 
 [![tests](https://img.shields.io/github/actions/workflow/status/substrate-system/message/nodejs.yml?style=flat-square)](https://github.com/substrate-system/message/actions/workflows/nodejs.yml)
-[![types](https://img.shields.io/npm/types/msgpackr?style=flat-square)](README.md)
+[![types](https://img.shields.io/npm/types/@substrate-system/message?style=flat-square)](README.md)
 [![module](https://img.shields.io/badge/module-ESM%2FCJS-blue?style=flat-square)](README.md)
 [![install size](https://flat.badgen.net/packagephobia/install/@substrate-system/message)](https://packagephobia.com/result?p=@substrate-system/message)
 [![GZip size](https://flat.badgen.net/bundlephobia/minzip/@substrate-system/message)](https://bundlephobia.com/package/@substrate-system/message)
 [![license](https://img.shields.io/badge/license-Big_Time-blue?style=flat-square)](LICENSE)
 
 
-Create and verify signed messages with [the webcrypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API).
+Create and verify signed messages with
+[the webcrypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API).
 
 
 ## Contents
@@ -19,6 +20,8 @@ Create and verify signed messages with [the webcrypto API](https://developer.moz
 - [Example](#example)
   * [Create a message](#create-a-message)
   * [Verify a message](#verify-a-message)
+- [Reserved keys](#reserved-keys)
+- [What `verify` does and does not tell you](#what-verify-does-and-does-not-tell-you)
 
 <!-- tocstop -->
 
@@ -31,11 +34,12 @@ npm i -S @substrate-system/message
 ## Example
 
 ### Create a message
+
 ```js
-import { EccKeys as Keys } from '@substrate-system/keys'
+import { EccKeys } from '@substrate-system/keys/ecc'
 import { create } from '@substrate-system/message'
 
-const alicesKeys = await Keys.create()
+const alicesKeys = await EccKeys.create()
 const req = await create(alicesKeys.writeKey, { hello: 'world' })
 ```
 
@@ -55,13 +59,13 @@ The returned object has a format like
 > by `verify(message)`.
 >
 
-```js
+```ts
 import { test } from '@substrate-system/tapzero'
-import { Keys } from '@substrate-system/keys'
-import { create } from '@substrate-system/message'
+import { EccKeys } from '@substrate-system/keys/ecc'
+import { create, type SignedMessage } from '@substrate-system/message'
 
-let req:SignedMessage<{ hello: 'world' }>
-const alicesKeys = await Keys.create()
+let req:SignedMessage<{ hello:string }>
+const alicesKeys = await EccKeys.create()
 test('create a message', async t => {
     req = await create(alicesKeys.writeKey, { hello: 'world' })
 
@@ -73,6 +77,7 @@ test('create a message', async t => {
 ```
 
 ### Verify a message
+
 ```js
 import { test } from '@substrate-system/tapzero'
 import { verify } from '@substrate-system/message'
@@ -84,3 +89,21 @@ test('verify a message', async t => {
 })
 ```
 
+`verify` never rejects. Anything that is not an authentic message
+resolves to `false`, including malformed input -- a missing or non
+string `signature` or `author`, an unparseable DID, non base64 signature
+bytes, or content that cannot be serialized as canonical JSON.
+
+## Reserved keys
+
+`create` adds `author` and `signature` to the object you give it, so
+neither may appear in that object. Passing either one throws a
+`TypeError`. They are excluded from the input type too, so this is
+usually a compile error before it is a runtime one.
+
+```js
+// throws -- `signature` is added by `create`, and stripped by `verify`
+await create(alicesKeys.writeKey, { signature: 'metadata' })
+```
+
+Everything else is signed, including a JSON `__proto__` key.
