@@ -21,7 +21,6 @@ Create and verify signed messages with
   * [Create a message](#create-a-message)
   * [Verify a message](#verify-a-message)
 - [Reserved keys](#reserved-keys)
-- [What `verify` does and does not tell you](#what-verify-does-and-does-not-tell-you)
 
 <!-- tocstop -->
 
