@@ -14,6 +14,10 @@ updates:
         update-types: ["version-update:semver-major"]
       - dependency-name: "@typescript-eslint*"
         update-types: ["version-update:semver-major"]
+      # TypeScript 7 is the native rewrite; it drops the JS compiler
+      # API that typescript-eslint needs to parse.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
   # Enable updates to github actions
   - package-ecosystem: "github-actions"
     directory: "/"
